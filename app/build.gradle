@@ -43,8 +43,10 @@ build.mustRunAfter test
 
 jar {
     manifest{
-        attributes 'Class-Path': '/libs/app-1.0-all.jar', 'Main-Class': 'me.Legadyn.JDABot.Bot'
+        attributes 'Class-Path': '/libs/app-1.0.jar', 'Main-Class': 'me.Legadyn.JDABot.Bot'
     }
+    baseName = 'app'
+    version = '1.0'
 }
 
 compileJava.options.encoding = 'UTF-8'
