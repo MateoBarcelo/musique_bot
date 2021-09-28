@@ -1,5 +1,3 @@
-*.env
-
 # Compiled class file
 *.class
 
@@ -24,7 +22,7 @@
 hs_err_pid*
 
 build/
-*.env
+.env
 
 
 
