@@ -26,7 +26,7 @@ public class Listener extends ListenerAdapter {
 
         String prefix = Config.get(ConfigKeys.PREFIX);
         String message = event.getMessage().getContentRaw();
-        if (!message.startsWith("-")) return;
+        if (!message.startsWith(prefix)) return;
         /*
         APAGADO
         (ONLY ADMIN)

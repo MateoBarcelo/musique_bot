@@ -58,7 +58,7 @@ public class CommandManager {
 
     void handle(GuildMessageReceivedEvent event) throws InterruptedException {
         String[] split = event.getMessage().getContentRaw()
-                .replaceFirst("(?i)" + Pattern.quote(Objects.requireNonNull("-")), "")
+                .replaceFirst("(?i)" + Pattern.quote(Objects.requireNonNull(Config.get(ConfigKeys.PREFIX))), "")
                 .split("\\s+");
 
         String invoke = split[0].toLowerCase();
