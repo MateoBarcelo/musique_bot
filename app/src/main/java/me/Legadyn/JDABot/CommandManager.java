@@ -27,6 +27,7 @@ public class CommandManager {
         addCommand(new QueueCommand());
         addCommand(new ClearCommand());
         addCommand(new LeaveCommand());
+        addCommand(new SavePlaylistCommand());
     }
 
     private void addCommand(ICommand cmd) {
@@ -57,7 +58,7 @@ public class CommandManager {
 
     void handle(GuildMessageReceivedEvent event) throws InterruptedException {
         String[] split = event.getMessage().getContentRaw()
-                .replaceFirst("(?i)" + Pattern.quote(Objects.requireNonNull(Config.get(ConfigKeys.PREFIX))), "")
+                .replaceFirst("(?i)" + Pattern.quote(Objects.requireNonNull("-")), "")
                 .split("\\s+");
 
         String invoke = split[0].toLowerCase();

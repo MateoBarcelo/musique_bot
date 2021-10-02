@@ -22,7 +22,7 @@ public class JoinCommand implements ICommand {
         }
 
         if(voiceState.inVoiceChannel()) {
-            channel.sendMessage("No puedes reproducir música, estoy en otro canal de voz.").queue();
+            channel.sendMessage("No puedes hacer que entre, estoy en otro canal de voz.").queue();
             return;
         }
 
@@ -30,7 +30,7 @@ public class JoinCommand implements ICommand {
         final GuildVoiceState memberState = member.getVoiceState();
 
         if(!memberState.inVoiceChannel()) {
-            channel.sendMessage("No puedes reproducir musica, tienes que estar en un canal de voz.").queue();
+            channel.sendMessage("No puedes hacer que entre, tienes que estar en un canal de voz.").queue();
             return;
         }
 
@@ -38,7 +38,7 @@ public class JoinCommand implements ICommand {
         final VoiceChannel memberChannel = memberState.getChannel();
 
         audioManager.openAudioConnection(memberChannel); //Con esto se conecta al canal, se abre una conexión para que pueda entrar el bot
-        channel.sendMessageFormat("Conectando al canal... ( %s )", memberChannel.getName()).queue();
+        channel.sendMessageFormat("`Conectando al canal... ( %s )`", memberChannel.getName()).queue();
 
     }
 

@@ -14,7 +14,7 @@ public class Bot {
 
     private Bot() throws LoginException {
 
-        JDA builder = JDABuilder.createDefault(System.getenv().get("TOKEN"), GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_VOICE_STATES)
+        JDA builder = JDABuilder.createDefault("ODg2OTk1NDczMjc2MjM1OTA3.YT9s6A.r5OCHZlhLqHmiY-PYYKe4ZlYvrE", GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_VOICE_STATES)
                                     .disableCache(EnumSet.of(CacheFlag.CLIENT_STATUS, CacheFlag.ACTIVITY, CacheFlag.EMOTE)).enableCache(CacheFlag.VOICE_STATE)
                                     .addEventListeners(new Listener()).setActivity(Activity.listening("Musique")).build();
 

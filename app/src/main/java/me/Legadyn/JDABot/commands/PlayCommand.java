@@ -6,7 +6,12 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.VoiceChannel;
 import net.dv8tion.jda.api.managers.AudioManager;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
 
+import java.io.FileReader;
+import java.io.Reader;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -45,13 +50,27 @@ public class PlayCommand implements ICommand{
 
         String link = String.join(" ", ctx.getArgs());
 
+        if(ctx.getArgs().get(0).equals("playlist")) {
+            JSONParser parser = new JSONParser();
+
+            try {
+                Reader reader = new FileReader("app/src/main/resources/playlists.json");
+                JSONObject jsonObject = (JSONObject) parser.parse(reader);
+
+                link = (String) jsonObject.get(ctx.getArgs().get(1));
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            channel.sendMessage("Usa -play <link> o play playlist <nombre>");
+        }
+
         if(!isUrl(link)) {
             link = "ytsearch:" + link;
         }
 
         PlayerManager.getInstance().loadAndPlay(channel, link);
-
-        //PROBLEMA - SOLUCIÓN: Hacer que ponga playlist solo cuando en la url hay una playlist
     }
 
     private boolean isUrl(String link) {
