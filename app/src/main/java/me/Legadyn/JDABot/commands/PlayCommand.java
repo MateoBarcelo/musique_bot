@@ -51,7 +51,7 @@ public class PlayCommand implements ICommand{
         String link = String.join(" ", ctx.getArgs());
 
         if(ctx.getArgs().get(0).equals("playlist")) {
-            if(ctx.getArgs().get(1).equals(null)) {
+            if(ctx.getArgs().get(1).isBlank()) {
                 channel.sendMessage("`Usa -play <link> o play playlist <nombre> para reproducir una cancion.`").queue();
                 return;
             }
