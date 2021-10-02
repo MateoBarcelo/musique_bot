@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.net.URI;
 import java.util.List;
 
 public class SavePlaylistCommand implements ICommand {
@@ -22,7 +23,14 @@ public class SavePlaylistCommand implements ICommand {
            channel.sendMessage("`Usa -saveplaylist <nombre> <link> para guardar una playlist`").queue();
            return;
         }
-
+        if(isURL(args.get(0))) {
+            channel.sendMessage("`Usa -saveplaylist <nombre> <link> para guardar una playlist`").queue();
+            return;
+        }
+        if(!isURL(args.get(1))) {
+            channel.sendMessage("`Usa -saveplaylist <nombre> <link> para guardar una playlist`").queue();
+            return;
+        }
         JSONObject playlist = new JSONObject();
         playlist.put(args.get(0), args.get(1));
 
@@ -42,5 +50,15 @@ public class SavePlaylistCommand implements ICommand {
     @Override
     public String getName() {
         return "saveplaylist";
+    }
+
+    public boolean isURL(String link) {
+        try {
+            new URI(link);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 }

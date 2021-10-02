@@ -51,6 +51,10 @@ public class PlayCommand implements ICommand{
         String link = String.join(" ", ctx.getArgs());
 
         if(ctx.getArgs().get(0).equals("playlist")) {
+            if(ctx.getArgs().get(1).equals(null)) {
+                channel.sendMessage("`Usa -play <link> o play playlist <nombre> para reproducir una cancion.`").queue();
+                return;
+            }
             JSONParser parser = new JSONParser();
 
             try {
@@ -62,10 +66,7 @@ public class PlayCommand implements ICommand{
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else {
-            channel.sendMessage("Usa -play <link> o play playlist <nombre>");
         }
-
         if(!isUrl(link)) {
             link = "ytsearch:" + link;
         }
