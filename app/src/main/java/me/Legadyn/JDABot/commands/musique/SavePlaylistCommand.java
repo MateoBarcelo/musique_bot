@@ -9,6 +9,7 @@ import org.json.simple.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 public class SavePlaylistCommand implements ICommand {
@@ -52,11 +53,11 @@ public class SavePlaylistCommand implements ICommand {
         return "saveplaylist";
     }
 
-    public boolean isURL(String link) {
+   private boolean isURL(String link) {
         try {
             new URI(link);
             return true;
-        } catch (Exception e) {
+        } catch (URISyntaxException e) {
             return false;
         }
 
